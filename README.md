@@ -38,3 +38,12 @@ I recommend use the `./gradlew bootRun` command.
 docker run -p 8080:8080 -t docker.io/josue270193/challenge_calculator:latest
 ``
 
+### Test endpoint
+
+In order to test all the endpoint please open a browser and go to webpage.
+A swagger page will provide you the access to play with it.
+
+``
+http://localhost:8080
+``
+
