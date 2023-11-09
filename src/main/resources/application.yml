@@ -1,0 +1,71 @@
+logging:
+  level:
+    root: INFO
+    web: DEBUG
+    org:
+      springframework:
+        data: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  profiles:
+    active: "dev"
+
+  datasource:
+    username: calculator
+    password: calculator
+    url: jdbc:postgresql://localhost:5432/calculator
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show_sql: true
+
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      group-id: calculator
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: app.josue.challengecalculator.infrastructure.outbound.kafka.topic
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  cache:
+    type: hazelcast
+
+jdbc:
+  connection:
+    pool:
+      size: 5
+
+bucket4j:
+  enabled: true
+  filters:
+    - cache-name: buckets
+      filter-method: webflux
+      filter-order: 1
+      url: ^(/calculator).*
+      rate-limits:
+      - bandwidths:
+        - capacity: 3
+          time: 60
+          unit: seconds
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+    include-stacktrace: never
+  port: 8080
+#  port: ${random.int(8080,8999)}
