@@ -64,6 +64,10 @@ jobs:
       # Build and push Docker image
       - name: Build and push Docker image
         id: build-and-push
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
         run: ./gradlew bootBuildImage --publishImage
 
       # Sign the resulting Docker image digest except on PRs.
