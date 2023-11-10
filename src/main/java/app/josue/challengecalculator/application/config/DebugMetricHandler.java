@@ -21,10 +21,9 @@ public class DebugMetricHandler implements MetricHandler {
                 type,
                 name,
                 tags
-                        .stream()
-                        .map(mtr -> mtr.getKey() + ":" + mtr.getValue())
-                        .collect(Collectors.joining(","))));
-
+                    .stream()
+                    .map(mtr -> mtr.getKey() + ":" + mtr.getValue())
+                    .collect(Collectors.joining(","))));
     }
 
 }

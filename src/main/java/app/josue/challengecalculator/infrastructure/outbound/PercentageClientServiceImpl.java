@@ -25,6 +25,9 @@ public class PercentageClientServiceImpl implements PercentageClientService {
     @Autowired
     private CacheManager cacheManager;
 
+    private Long boundMin = 1L;
+    private Long boundMax = 10L;
+
     @Override
     public Mono<PercentageModel> getPercentage() {
         // We could use a MockServer like WireMock
@@ -75,7 +78,17 @@ public class PercentageClientServiceImpl implements PercentageClientService {
     }
 
     private Duration getDelay() {
-        return Duration.of(new Random().nextLong(1L, 10L), ChronoUnit.SECONDS);
+        return Duration.of(new Random().nextLong(boundMin, boundMax), ChronoUnit.SECONDS);
+    }
+
+    @Override
+    public void setBoundMin(Long boundMin) {
+        this.boundMin = boundMin;
+    }
+
+    @Override
+    public void setBoundMax(Long boundMax) {
+        this.boundMax = boundMax;
     }
 
 }

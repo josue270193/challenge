@@ -7,4 +7,7 @@ public interface PercentageClientService {
 
     Mono<PercentageModel> getPercentage();
 
+    void setBoundMin(Long boundMin);
+
+    void setBoundMax(Long boundMax);
 }

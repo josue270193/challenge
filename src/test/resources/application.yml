@@ -1,0 +1,11 @@
+spring:
+  cache:
+    type: hazelcast
+  kafka:
+    consumer:
+      group-id: calculator
+jdbc:
+  connection:
+    pool:
+      size: 5
+
