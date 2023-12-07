@@ -35,7 +35,7 @@ Also, you could use the compose.yaml file as a template.
 I recommend use the `./gradlew bootRun` command. 
 
 ``
-docker run -p 8080:8080 -t docker.io/josue270193/challenge_calculator:latest
+docker run -p 8080:8080 -t docker.io/josue270193/challenge_calculator:0.0.2-SNAPSHOT
 ``
 
 ### Test endpoint

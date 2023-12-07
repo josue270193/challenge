@@ -14,12 +14,12 @@ management:
 
 spring:
   profiles:
-    active: "dev"
+    active: "prod"
 
   datasource:
-    username: calculator
-    password: calculator
-    url: jdbc:postgresql://localhost:5432/calculator
+    username: ${DB_USER:calculator}
+    password: ${DB_PASSWORD:calculator}
+    url: jdbc:postgresql://${DB_URL:localhost:5432/calculator}
   jpa:
     generate-ddl: true
     hibernate:
@@ -27,6 +27,7 @@ spring:
     show_sql: true
 
   kafka:
+    bootstrap-servers: ${KAFKA_URL:localhost:9092}
     consumer:
       auto-offset-reset: earliest
       group-id: calculator
